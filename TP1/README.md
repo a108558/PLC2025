@@ -3,7 +3,7 @@
 ## Autor:
 • Catarina Barbosa
 • A108558
-[![](https://i.postimg.cc/pLdppnpN/20230828-143547-polarr-1.jpg)](https://postimg.cc/3dPKqNX9)
+<img src="https://i.postimg.cc/pLdppnpN/20230828-143547-polarr-1.jpg" alt="Minha Foto" width="150"/>
 
 ## Resumo:
 Pretende-se encontrar uma expressão regular que representa strings binárias que não incluem a subsequência "011"
