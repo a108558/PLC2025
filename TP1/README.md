@@ -3,6 +3,8 @@
 ## Autor:
 • Catarina Barbosa
 • A108558
+
+
 <img src="https://i.postimg.cc/pLdppnpN/20230828-143547-polarr-1.jpg" alt="Minha Foto" width="150"/>
 
 ## Resumo:
