@@ -8,4 +8,4 @@ Explicação:
 - (0*(01)*)* :       a seguir, pode-se ler vários '0', mas, caso se queira ler um '1', é necessário fazer sequências de '01',
                      o que faz com que nunca ocorra um '011', já que depois desse '1' ou se lê um '0' ou acaba aí a string
 
--  0*:               no final, podemos ter zero ou mais ocorrências de '0'
+-  0*$:               no final, podemos ter zero ou mais ocorrências de '0'
