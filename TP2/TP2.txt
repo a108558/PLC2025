@@ -1,2 +1,62 @@
+=====
 EXPLICAÇÃO DO CÓDIGO: 
+=====
 
+Começamos por criar uma lista, que irá guardar as linhas do texto_html.
+Usamos uma variável in_ol que irá ser um auxiliar, para sabermos se, num dado momento
+(conforme essa variável é True ou False) estamos a ler uma lista numerada.
+
+Percorremos então as linhas do texto_markdown.
+
+---------------------
+
+Se na linha encontramos uma " ** ... ** ", transformamos o texto dentro dos *, colocando-o
+no formato <b>...</b>.
+    - Para identificar um texto negrito, usamos a expressão regular "r'\*\*([^\*]+)\*\*'"
+        Esta significa que procuramos dois asteriscos (\*\*), seguidos de um ou mais caracteres 
+        que não sejam asteriscos ([^\*]+), e terminando com dois asteriscos (\*\*). 
+        O texto entre os asteriscos é capturado pelo grupo de parênteses e substituído pelo equivalente 
+        em HTML, ou seja, <b>texto</b>.
+
+
+O mesmo para o itálico, " * ...* ", apenas mudando que a expressão regular, r'\*([^\*]+)\*', que começa por verificar que
+começa por 1 *, e termina por *, e substitui o texto pelo HTML <i>texto</i>
+
+---------------------
+
+Agora iremos verificar os cabeçalhos. 
+
+Se achar algo começado com #, espaço e qualquer coisa a seguir, verificado com r'# (.*)', 
+isso indica um cabeçalho de nível 1, e o texto é colocado entre <h1>...</h1>.
+
+Se a linha começar com ##, espaço e texto, verificado com r'## (.*)', é um cabeçalho de 
+nível 2, e o texto é colocado entre <h2>...</h2>.
+
+Se começar com ###, espaço e texto, verificado com r'### (.*)', é um cabeçalho de 
+nível 3, e o texto é colocado entre <h3>...</h3>.
+
+---------------------
+
+
+Para imagens, procuramos o padrão "![texto alternativo](URL)", usando a expressão regular r'!\[([^\]]+)\]\(([^)]+)\)'.  
+Esta expressão identifica um ponto de exclamação seguido de texto entre parênteses retos (que será o texto alternativo), 
+seguido de um URL entre parênteses.  
+O texto alternativo e o URL são capturados e substituídos pelo equivalente HTML: <img src="URL" alt="texto alternativo"/>.
+
+Para links, procuramos o padrão "[texto](URL)", usando a expressão regular r'\[([^\]]+)\]\(([^)]+)\)'.  
+Esta expressão identifica texto entre parênteses retos (que será o texto do link), seguido de um URL entre parênteses.  
+O texto e o URL são capturados e substituídos pelo equivalente HTML: <a href="URL">texto</a>.
+
+---------------------
+
+
+Para listas numeradas, verificamos se a linha começa por um número seguido de ponto e espaço, usando a expressão 
+regular r'\d+\.\s+.*'.  
+Quando encontramos o início de uma lista, adicionamos a tag <ol> à lista de saída e marcamos que estamos dentro de 
+uma lista com a variável in_ol.  
+Cada item da lista é colocado entre <li>...</li>.  
+Quando deixamos de encontrar linhas que pertencem à lista, fechamos a lista com </ol> e atualizamos a variável in_ol para False.
+
+---------------------
+
+No final, juntamos todas as linhas processadas numa única string, separando-as por quebras de linha, e devolvemos o resultado HTML.
