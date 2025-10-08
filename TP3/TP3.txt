@@ -1,0 +1,34 @@
+=====
+EXPLICAÇÃO DO CÓDIGO: 
+=====
+
+O objetivo da função tokenize é extrair e identificar os diferentes tipos de tokens presentes numa query SPARQL.
+
+Começamos por criar uma lista chamada reconhecidos, que irá guardar todos os tokens reconhecidos ao longo da leitura do input.
+
+A variável linha serve para identificar em que linha estamos atualmente.
+
+-------------
+
+Utilizamos a função re.finditer com uma expressão regular composta por vários grupos nomeados, cada um responsável 
+por identificar um tipo de token específico:
+
+    SELECT e WHERE para palavras essas mesmas palavras;
+    VAR para variáveis, que começam por ? seguido de letras ou números.
+    ID para identificadores com prefixo, começando por ":";
+    PREF para prefixos ou nomes simples;
+    PA e PF para { e };
+    PONTO para ".";
+    SKIP para espaços e tabs, que vão ser ignorados;
+    NEWLINE para "\n", e quando este aparece, incrementamos o valor de linha;
+    ERRO para qualquer outra coisa não reconhecida pelo que foi dito antes;
+
+-------------
+
+Percorremos todos os matches encontrados pela expressão regular.
+
+Para cada match, verificamos a qual grupo pertence, e criamos uma tupla com o tipo de token, o valor reconhecido, o número da linha e a posição na string.
+
+Se o token for um espaço (SKIP), ele é ignorado e não é adicionado à lista de tokens.
+
+No final, a função devolve a lista de tokens reconhecidos.
